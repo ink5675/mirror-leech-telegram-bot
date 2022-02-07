@@ -237,7 +237,7 @@ class MirrorListener:
             msg += f'\n\n<b>cc: </b>{self.tag}'
             buttons = ButtonMaker()
             link = short_url(link)
-            buttons.buildbutton("☁️ Drive Link", link)
+            buttons.buildbutton("☁️Google Drive Link☁️", link)
             LOGGER.info(f'Done Uploading {name}')
             if INDEX_URL is not None:
                 url_path = requests.utils.quote(f'{name}')
@@ -245,14 +245,14 @@ class MirrorListener:
                 if ospath.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{name}'):
                     share_url += '/'
                     share_url = short_url(share_url)
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("⚡Index Link⚡", share_url)
                 else:
                     share_url = short_url(share_url)
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("⚡Index Link⚡", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
                         share_urls = short_url(share_urls)
-                        buttons.buildbutton("🌐 View Link", share_urls)
+                        buttons.buildbutton("🔖View Link🔖", share_urls)
             if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
                 buttons.buildbutton(f"{BUTTON_FOUR_NAME}", f"{BUTTON_FOUR_URL}")
             if BUTTON_FIVE_NAME is not None and BUTTON_FIVE_URL is not None:
@@ -374,11 +374,11 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
             pass
 
     if not is_url(link) and not is_magnet(link) and not ospath.exists(link):
-        help_msg = "<b>Send link along with command line:</b>"
+        help_msg = "<b>প্রথমে কমান্ড দিয়ে পরে লিংক দিন, অথবা:</b>"
         help_msg += "\n<code>/command</code> {link} |newname pswd: mypassword [𝚣𝚒𝚙/𝚞𝚗𝚣𝚒𝚙]"
-        help_msg += "\n\n<b>By replying to link or file:</b>"
+        help_msg += "\n\n<b>প্রথমে লিংক দিয়ে পরে লিংককে রিপ্লাই করে কমান্ড দিন,:</b>"
         help_msg += "\n<code>/command</code> |newname pswd: mypassword [𝚣𝚒𝚙/𝚞𝚗𝚣𝚒𝚙]"
-        help_msg += "\n\n<b>Direct link authorization:</b>"
+        help_msg += "\n\n<b>গ্রুপের অন্যদের কাছ থেকে কমান্ড করা শিখুন। #ihnasim:</b>"
         help_msg += "\n<code>/command</code> {link} |newname pswd: mypassword\nusername\npassword"
         help_msg += "\n\n<b>Qbittorrent selection:</b>"
         help_msg += "\n<code>/qbcommand</code> <b>s</b> {link} or by replying to {file}"
@@ -393,10 +393,10 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
         if content_type is None or match(r'text/html|text/plain', content_type):
             try:
                 link = direct_link_generator(link)
-                LOGGER.info(f"Generated link: {link}")
+                LOGGER.info(f"Cloning: {link}")
             except DirectDownloadLinkException as e:
                 LOGGER.info(str(e))
-                if str(e).startswith('ERROR:'):
+                if str(e).startswith('Sorry, The file was wrong or you gave wrong link:'):
                     return sendMessage(str(e), bot, update)
     elif isQbit and not is_magnet(link) and not ospath.exists(link):
         if link.endswith('.torrent'):
