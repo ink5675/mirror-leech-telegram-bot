@@ -20,9 +20,9 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading...📤"
-    STATUS_DOWNLOADING = "Downloading...📥"
-    STATUS_CLONING = "Cloning...♻️"
+    STATUS_UPLOADING = "আপলোডিং...📤"
+    STATUS_DOWNLOADING = "ডাউনলোডিং...📥"
+    STATUS_CLONING = "ক্লোনিং...♻️"
     STATUS_WAITING = "Queued...💤"
     STATUS_FAILED = "Failed 🚫. Cleaning Download..."
     STATUS_PAUSE = "Paused...⛔️"
@@ -105,8 +105,8 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '■' * cFull
-    p_str += '□' * (12 - cFull)
+    p_str = '⚫' * cFull
+    p_str += '⬤' * (12 - cFull)
     p_str = f"[{p_str}]"
     return p_str
 
@@ -187,8 +187,8 @@ def get_readable_message():
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("Previous", "status pre")
-            buttons.sbutton("Next", "status nex")
+            buttons.sbutton("আগের পৃষ্ঠা", "status pre")
+            buttons.sbutton("পরের পৃষ্ঠা", "status nex")
             button = InlineKeyboardMarkup(buttons.build_menu(2))
             return msg + bmsg, button
         return msg + bmsg, ""
