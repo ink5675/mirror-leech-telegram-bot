@@ -67,12 +67,12 @@ def start(update, context):
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-You can't use this bot.To use this bot join in our group!
+This bot can mirror all your links to Google Drive!
 Type /{BotCommands.HelpxCommand} Get botcomands
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
-        sendMarkup('You can't use this bot,To use bot join in our group', context.bot, update, reply_markup)
+        sendMarkup('Not Authorized user, deploy your own mirror-leech bot', context.bot, update, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update)
