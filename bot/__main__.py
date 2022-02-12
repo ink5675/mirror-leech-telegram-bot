@@ -150,12 +150,14 @@ help_string_telegraph = f'''<br>
 <br><br>
 <b>/{BotCommands.StatsxCommand}</b>: বটের সকল তথ্য পেতে - 
 '''
-help = Telegraph(access_token=telegraph_token).create_page(
-        title='X_IH_NASIM_X',
-        author_name='IKBAL',
-        author_url='https://t.me/IH_X_NASIM',
-        html_content=help_string_telegraph,
+help = telegraph.create_page(
+
+        title='Mirror-Leech-Bot Help',
+
+        content=help_string_telegraph,
+
     )["path"]
+
 
 help_string = f'''
 These Commands Are Only For Admin.if you are a unauthorize user don't try this commands.
